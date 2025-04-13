@@ -111,7 +111,7 @@ function Page() {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col gap-20 justify-center items-center mt-56">
+    <section className="min-h-screen flex flex-col gap-20 justify-center items-center mt-56 md:px-20">
       <h1 className="font-bold text-9xl">Leçons</h1>
       {themesData.map((theme, index) => (
         <ThemeCard

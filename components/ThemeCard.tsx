@@ -21,6 +21,8 @@ import {
 import { useEffect, useState } from "react";
 import { StatusBadge } from "./StatusBadge";
 import { Separator } from "./ui/separator";
+import Link from "next/link";
+import slugify from "@/utils/slugify";
 
 const SubCardCarousel = ({
   card,
@@ -189,12 +191,17 @@ export const ThemeCard = ({
                   <SubCardCarousel card={card} />
                 </div>
                 <CardFooter className="flex flex-col gap-2 px-4 pb-4">
-                  <Button
-                    variant="default"
-                    className="w-full text-sm cursor-pointer"
+                  <Link
+                    href={`/lecons/${slugify(card.title)}`}
+                    className="w-full"
                   >
-                    Commencer
-                  </Button>
+                    <Button
+                      variant="default"
+                      className="w-full text-sm cursor-pointer"
+                    >
+                      Commencer
+                    </Button>
+                  </Link>
                   <Button
                     variant="outline"
                     className="w-full text-sm cursor-pointer"
