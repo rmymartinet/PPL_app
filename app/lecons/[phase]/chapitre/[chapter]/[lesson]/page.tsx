@@ -14,7 +14,7 @@ export default async function Page({
 }: {
   params: { phase: string; chapter: string; lesson: string };
 }) {
-  const { phase, chapter, lesson: slug } = params;
+  const { phase, chapter, lesson: slug } = await params;
 
   const filePath = path.join(
     process.cwd(),

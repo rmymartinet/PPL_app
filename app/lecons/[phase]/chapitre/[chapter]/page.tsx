@@ -1,12 +1,12 @@
 import { phasesData } from "@/data/phaseData";
 import Link from "next/link";
 
-export default function ChapterPage({
+export default async function ChapterPage({
   params,
 }: {
   params: { phase: string; chapter: string };
 }) {
-  const { phase, chapter: chapterSlug } = params;
+  const { phase, chapter: chapterSlug } = await params;
 
   const currentPhase = phasesData.find(
     (p) => p.category.toLowerCase() === phase.toLowerCase()

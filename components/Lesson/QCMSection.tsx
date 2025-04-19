@@ -1,28 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { QCMProps } from "@/types/types";
+import { useEffect, useState } from "react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
-interface QCMAnswer {
-  label: string;
-  correct: boolean;
-}
-
-interface QCMItem {
-  question: string;
-  answers: QCMAnswer[];
-}
-
-interface QCMProps {
-  qcmList: QCMItem[];
-  onSuccess: () => void;
-}
-
-const QCMSection = ({ qcmList, onSuccess }: QCMProps) => {
+const QCMSection = ({ qcmList, isReset, onSuccess }: QCMProps) => {
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(
     Array(qcmList.length).fill(null)
   );
   const [validated, setValidated] = useState(false);
+
+  // 🔁 Reset automatique quand `isReset` devient true
+  useEffect(() => {
+    if (isReset) {
+      resetAll();
+      // 🔁 On notifie le parent que le reset est fini
+      setTimeout(() => {
+        // ça évite un update pendant le render
+        const event = new CustomEvent("qcmResetDone");
+        window.dispatchEvent(event);
+      }, 0);
+    }
+  }, [isReset]);
 
   const handleChange = (qcmIndex: number, answerIndex: number) => {
     const updated = [...selectedAnswers];
@@ -106,29 +105,6 @@ const QCMSection = ({ qcmList, onSuccess }: QCMProps) => {
         >
           Valider toutes les réponses
         </button>
-      )}
-
-      {validated && (
-        <div className="mt-4">
-          {qcmList.every((_, i) => isAnswerCorrect(i)) ? (
-            <p className="text-green-600 font-semibold text-sm">
-              ✅ Toutes les réponses sont correctes, bravo !
-            </p>
-          ) : (
-            <>
-              <p className="text-red-600 font-semibold text-sm mb-2">
-                ❌ Certaines réponses sont incorrectes.
-              </p>
-              <button
-                type="button"
-                onClick={resetAll}
-                className="text-sm text-blue-600 hover:underline"
-              >
-                🔁 Refaire le QCM
-              </button>
-            </>
-          )}
-        </div>
       )}
     </section>
   );

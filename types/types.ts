@@ -52,3 +52,25 @@ export interface FilterAndSortControlsProps {
   search: string;
   setSearch: (val: string) => void;
 }
+
+export interface QCMAnswer {
+  label: string;
+  correct: boolean;
+}
+
+export interface QCMItem {
+  question: string;
+  answers: QCMAnswer[];
+}
+
+export interface QCMProps {
+  qcmList: QCMItem[];
+  isReset: boolean;
+  onSuccess: () => void;
+}
+
+export type LessonEndProps = {
+  isQcmValidated: boolean;
+  setIsReset: (isReset: boolean) => void;
+  nextLessonSlug?: string;
+};
