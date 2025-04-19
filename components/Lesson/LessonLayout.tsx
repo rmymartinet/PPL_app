@@ -8,17 +8,16 @@ import QCMSection from "@/components/Lesson/QCMSection";
 import TableOfContents from "@/components/TableOfContents";
 import LessonEnd from "./LessonEnd";
 import { useState } from "react";
+import LessonResum from "./LessonResum";
 
 interface QCMAnswer {
   label: string;
   correct: boolean;
 }
 
-interface QCMProps {
-  qcm: {
-    question: string;
-    answers: QCMAnswer[];
-  };
+interface QCMItem {
+  question: string;
+  answers: QCMAnswer[];
 }
 
 export default function LessonLayout({
@@ -34,7 +33,7 @@ export default function LessonLayout({
   objectives: string[];
   summary: string;
   memo?: string;
-  qcm: QCMProps["qcm"];
+  qcm: QCMItem[];
 }) {
   const [qcmValidated, setQcmValidated] = useState(false);
 
@@ -49,9 +48,10 @@ export default function LessonLayout({
       <main className="w-full lg:w-3/4">
         <div className="space-y-8">
           <LessonObjectives items={objectives} />
-          <LessonContent summary={summary} htmlContent={htmlContent} />
+          <LessonResum summary={summary} />
+          <LessonContent htmlContent={htmlContent} />
           {memo && <LessonFooter memo={memo} />}
-          <QCMSection qcm={qcm} onSuccess={() => setQcmValidated(true)} />
+          <QCMSection qcmList={qcm} onSuccess={() => setQcmValidated(true)} />
         </div>
         <LessonEnd
           isQcmValidated={qcmValidated}

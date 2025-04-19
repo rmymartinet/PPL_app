@@ -23,6 +23,7 @@ import { StatusBadge } from "./StatusBadge";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
 import slugify from "@/utils/slugify";
+import Image from "next/image";
 
 const SubCardCarousel = ({
   card,
@@ -105,6 +106,7 @@ const SubCardCarousel = ({
 export const ThemeCard = ({
   title,
   subtitle,
+  category,
   status = "in-progress",
   lessonsRead,
   totalLessons,
@@ -170,9 +172,9 @@ export const ThemeCard = ({
           {subCards.map((card, index) => (
             <CarouselItem
               key={index}
-              className="sm:basis-[300px] md:basis-[320px] lg:basis-[340px]"
+              className="sm:basis-[380px] md:basis-[400px] lg:basis-[420px] flex items-center justify-center"
             >
-              <Card className="rounded-xl shadow-md overflow-hidden py-0">
+              <Card className="rounded-xl shadow-md overflow-hidden py-0 h-[400px] border-2">
                 <div className="bg-red-100 p-4 flex flex-col gap-2 h-full">
                   <div className="flex justify-between items-center mb-4">
                     <div className="rounded-full bg-white p-2">
@@ -192,7 +194,9 @@ export const ThemeCard = ({
                 </div>
                 <CardFooter className="flex flex-col gap-2 px-4 pb-4">
                   <Link
-                    href={`/lecons/${slugify(card.title)}`}
+                    href={`/lecons/${category.toLocaleLowerCase()}/chapitre/${slugify(
+                      card.slug
+                    )}`}
                     className="w-full"
                   >
                     <Button
@@ -210,6 +214,14 @@ export const ThemeCard = ({
                   </Button>
                 </CardFooter>
               </Card>
+
+              <Image
+                src="/icons/3d_arrow.png"
+                alt=""
+                width={50}
+                height={50}
+                className="mx-4 rotate-90 md:flex hidden"
+              />
             </CarouselItem>
           ))}
         </CarouselContent>

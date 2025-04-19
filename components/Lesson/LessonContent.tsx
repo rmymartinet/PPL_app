@@ -1,23 +1,25 @@
-const LessonContent = ({
-  summary,
-  htmlContent,
-}: {
-  summary: string;
+import { useMemo } from "react";
+
+type Props = {
   htmlContent: string;
-}) => {
+};
+
+const LessonContent = ({ htmlContent }: Props) => {
+  const styledHtml = useMemo(() => {
+    let html = htmlContent;
+
+    // Quesiton
+    html = html.replace(
+      /<blockquote>([^]*?)❓([^]*?)<\/blockquote>/g,
+      `<blockquote class="p-4 bg-rose-50 text-emerald-800 font-semibold rounded-md my-4 border-none">$1❓ $2</blockquote>`
+    );
+
+    return html;
+  }, [htmlContent]);
+
   return (
-    <section className="prose prose-neutral max-w-none">
-      <div
-        id="résumé-express"
-        className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mb-6"
-      >
-        <h3 className="text-md font-semibold mb-2">📌 Résumé express</h3>
-        <p>{summary}</p>
-      </div>
-      <div
-        id="lecon-complète"
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
-      />
+    <section className="prose prose-lg max-w-none">
+      <div dangerouslySetInnerHTML={{ __html: styledHtml }} />
     </section>
   );
 };
