@@ -63,11 +63,13 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: 220 90% 56%; /* Bleu */
+  --chart-2: 330 80% 60%; /* Rose fuchsia */
+  --chart-3: 35 95% 55%; /* Orange */
+  --chart-4: 280 70% 60%; /* Violet */
+  --chart-5: 155 65% 45%; /* Vert menthe */
+  --chart-6: 50 95% 50%; /* Jaune lisible */
+  --chart-7: 0 0% 20%; /* Gris foncé */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -129,4 +131,114 @@
 h2[id],
 h3[id] {
   scroll-margin-top: 120px;
+}
+
+/* ===================== */
+/* 🌐 PROSE STYLING BASE */
+/* ===================== */
+
+.prose {
+  @apply max-w-none text-base leading-relaxed text-gray-800;
+}
+
+.prose h1 {
+  @apply text-3xl font-bold mt-10 mb-4 text-blue-400;
+}
+
+.prose h2 {
+  @apply text-xl font-semibold mt-8 mb-4;
+}
+
+.prose h3 {
+  @apply text-xl font-medium text-gray-700 mt-8 mb-3;
+}
+
+.prose h4 {
+  @apply text-lg font-medium text-gray-600 mt-6 mb-2;
+}
+
+.prose p {
+  @apply my-4 leading-relaxed;
+}
+
+.prose ul {
+  @apply list-disc pl-6 my-4 space-y-1;
+}
+
+.prose ol {
+  @apply list-decimal pl-6 my-4 space-y-1;
+}
+
+.prose li {
+  @apply my-1;
+}
+
+.prose a {
+  @apply text-blue-600 underline underline-offset-2 hover:text-blue-800;
+}
+
+.prose strong {
+  @apply font-semibold text-black;
+}
+
+.prose em {
+  @apply italic text-gray-700;
+}
+
+.prose blockquote {
+  @apply italic text-gray-600 border-l-4 border-gray-300 pl-4 my-6;
+}
+
+.prose hr {
+  @apply my-8 border-t border-gray-300;
+}
+
+.prose img {
+  @apply rounded-md shadow-md my-6;
+}
+
+.prose code {
+  @apply bg-gray-100 text-pink-700 rounded px-1 py-0.5 font-mono text-sm;
+}
+
+.prose pre {
+  @apply bg-gray-900 text-white p-4 rounded-md overflow-x-auto my-6;
+}
+
+.prose table {
+  @apply table-auto border-separate border-spacing-0  border border-gray-300 my-6 text-sm w-max rounded-xl overflow-hidden;
+}
+
+.prose thead {
+  @apply bg-blue-100;
+}
+
+.prose tbody tr:nth-child(odd) {
+  @apply bg-gray-50;
+}
+
+.prose tbody tr:hover {
+  @apply bg-blue-50 transition;
+}
+
+.prose th,
+.prose td {
+  @apply border border-gray-300 px-4 py-2;
+}
+
+.prose caption {
+  @apply text-center text-sm text-gray-500 mt-2;
+}
+
+.prose span.text-blue-600 {
+  @apply text-blue-600;
+}
+.prose span.text-red-600 {
+  @apply text-red-600;
+}
+.prose span.text-yellow-600 {
+  @apply text-yellow-600;
+}
+.prose span.text-green-600 {
+  @apply text-green-600;
 }
