@@ -45,8 +45,7 @@ export default async function Page({
       <LessonHeader
         title={data.title || deslugify(slug)}
         subtitle={data.subtitle || ""}
-        themeBg={data.theme || "meteo"}
-        category={data.category || "Général"}
+        category={phase}
         duration={data.duration || "10 min"}
         level={data.level || "Débutant"}
         imageUrl={data.imageUrl || "/images/prof.jpg"}

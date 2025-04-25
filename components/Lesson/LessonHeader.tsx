@@ -3,44 +3,49 @@
 import Link from "next/link";
 import { FaArrowLeft, FaRegClock, FaChartBar } from "react-icons/fa";
 import Image from "next/image";
-import clsx from "clsx";
 
 type LessonHeaderProps = {
   title: string | string[];
   subtitle: string;
   category: string;
-  themeBg?: string; // ex: "meteo", "navigation", etc.
   duration?: string;
   level?: string;
   imageUrl?: string;
   progressStatus?: "not-started" | "in-progress" | "done";
 };
 
-// Couleurs de fond par thème
-const themeColors: Record<string, string> = {
-  meteo: "bg-blue-100",
-  navigation: "bg-yellow-100",
-  moteur: "bg-orange-100",
-  reglementation: "bg-red-100",
-  radio: "bg-purple-100",
-  default: "bg-gray-100",
-};
-
 // Couleurs de bouton par thème
 const buttonColors: Record<string, string> = {
-  meteo: "bg-blue-700 hover:bg-blue-800",
-  navigation: "bg-yellow-600 hover:bg-yellow-700",
-  moteur: "bg-orange-600 hover:bg-orange-700",
-  reglementation: "bg-red-600 hover:bg-red-700",
-  radio: "bg-purple-600 hover:bg-purple-700",
+  "phase-1": "bg-[#A0D2E9] hover:bg-[#89C9E5]",
+  "phase-2": "bg-[#A6DDCB] hover:bg-[#92D4C0]",
+  "phase-3": "bg-[#FFD0A0] hover:bg-[#FFBE80]",
+  "phase-4": "bg-[#C4CAE8] hover:bg-[#B2B9E2]",
+  "phase-5": "bg-[#FFE066] hover:bg-[#FFD633]",
+  "phase-6": "bg-[#FF9E9E] hover:bg-[#FF8C8C]",
+  "phase-7": "bg-[#C8EEE1] hover:bg-[#B4E7D8]",
+  "phase-8": "bg-[#D9CFFA] hover:bg-[#CABEF5]",
+  "phase-9": "bg-[#B3D8F9] hover:bg-[#A3D1F7]",
+  "phase-10": "bg-[#F6CFCF] hover:bg-[#F2BFBF]",
   default: "bg-green-700 hover:bg-green-800",
+};
+
+const highlightColors = {
+  "phase-1": "#CDEBF7", // bleu avion plus doux
+  "phase-2": "#C3EBDD", // vert stabilité + feutré
+  "phase-3": "#FFE2CC", // orange doux (radio, aérodrome)
+  "phase-4": "#DEE2EF", // indigo carte désaturé
+  "phase-5": "#FFF2B3", // jaune météo pastel
+  "phase-6": "#FFC9C9", // rouge + rosé
+  "phase-7": "#E0F5EC", // menthe planning très pâle
+  "phase-8": "#E9E1FA", // lavande institution light
+  "phase-9": "#D3E9FC", // bleu licence UE + subtil
+  "phase-10": "#FAE3E3", // rose humain un peu moins bébé
 };
 
 const LessonHeader = ({
   title,
   subtitle,
   category,
-  themeBg = "default",
   duration = "6 min",
   level = "Débutant",
   imageUrl = "/images/prof.jpg",
@@ -48,10 +53,8 @@ const LessonHeader = ({
 }: LessonHeaderProps) => {
   return (
     <section
-      className={clsx(
-        "w-full py-16 px-6 md:px-12 lg:px-20",
-        themeColors[themeBg] || themeColors.default
-      )}
+      className="w-full py-16 px-6 md:px-12 lg:px-20"
+      style={{ backgroundColor: highlightColors[category] || "#f5f5f5" }}
     >
       <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
         {/* Texte */}
@@ -63,7 +66,7 @@ const LessonHeader = ({
             <FaArrowLeft className="mr-2" /> Tous les cours
           </Link>
 
-          <div className="uppercase text-sm text-green-700 font-semibold mb-2 tracking-wide">
+          <div className="uppercase text-sm font-semibold mb-2 tracking-wide">
             {category}
           </div>
 
@@ -86,10 +89,9 @@ const LessonHeader = ({
           {progressStatus !== "done" && (
             <Link
               href="#start"
-              className={clsx(
-                "inline-block text-white text-sm px-5 py-2 rounded-md font-semibold transition",
-                buttonColors[themeBg] || buttonColors.default
-              )}
+              className={
+                "inline-block text-sm px-5 py-2 rounded-md font-semibold transition bg-white text-black"
+              }
             >
               {progressStatus === "in-progress" ? "Continuer" : "Commencer"}
             </Link>

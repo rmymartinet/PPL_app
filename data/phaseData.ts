@@ -2,7 +2,7 @@ export const phasesData = [
   {
     title: "Connaissance de l’avion",
     subtitle: "Comprendre les phases de l’aéronef et son fonctionnement",
-    category: "Phase-1",
+    category: "phase-1",
     subCards: [
       {
         title: "Description de l’avion",
@@ -12,6 +12,7 @@ export const phasesData = [
         soundRead: true,
         lessonsRead: 0,
         totalLessons: 12,
+        duration: 45,
         qcmAvailable: 36,
         avgScore: 0,
         lessonsToReview: 0,
@@ -104,6 +105,7 @@ export const phasesData = [
         soundRead: true,
         lessonsRead: 0,
         totalLessons: 12,
+        duration: 32,
         qcmAvailable: 30,
         avgScore: 0,
         lessonsToReview: 0,
@@ -193,6 +195,7 @@ export const phasesData = [
         lessonsRead: 0,
         totalLessons: 5,
         qcmAvailable: 15,
+        duration: 120,
         avgScore: 0,
         lessonsToReview: 0,
         keyConcepts: [
@@ -580,13 +583,13 @@ export const phasesData = [
   },
   {
     title: "Connaissance de l’avion",
-    subtitle: "Comprendre les phases de l’aéronef et son fonctionnement",
-    category: "Phase-2",
+    subtitle: "Comprendre les hases de l’aéronef et son fonctionnement",
+    category: "phase-2",
     subCards: [
       {
         title: "La mise en œuvre de l’avion",
         slug: "mise-en-oeuvre-avion",
-        icon: "/icons/aircraft-startup.svg", // modifiable selon ton thème
+        icon: "/icons/aircraft-startup.svg",
         isNew: true,
         soundRead: true,
         lessonsRead: 0,
@@ -871,7 +874,7 @@ export const phasesData = [
     title: "Aérodrome, Radiothéléphonie et Circulation aérienne",
     subtitle:
       "Connaître l’environnement, les communications et les règles de circulation",
-    category: "Phase-3",
+    category: "phase-3",
     subCards: [
       {
         title: "L’aérodrome",
@@ -1166,6 +1169,157 @@ export const phasesData = [
         lessonsToReview: 0,
         keyConcepts: ["NOTAM", "SUP AIP", "Cartes temporaires"],
         lessons: [],
+      },
+    ],
+  },
+  {
+    title: "Navigation",
+    subtitle: "Maîtriser les bases de la navigation aérienne",
+    category: "phase-4",
+    subCards: [
+      {
+        title: "La navigation",
+        slug: "navigation",
+        icon: "/icons/navigation.svg",
+        isNew: true,
+        soundRead: true,
+        lessonsRead: 0,
+        totalLessons: 19,
+        qcmAvailable: 40,
+        avgScore: 0,
+        lessonsToReview: 0,
+        keyConcepts: [
+          "Coordonnées",
+          "Cartes VFR",
+          "Cap et dérive",
+          "Triangle des vitesses",
+          "HEA",
+          "Déclinaison",
+          "Planification",
+        ],
+        lessons: [
+          {
+            title: "La navigation",
+            slug: "la-navigation",
+            duration: "12 min",
+            level: "Débutant",
+          },
+          {
+            title: "Orthodromie et repérage sur la sphère terrestre",
+            slug: "orthodromie-reperage",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title: "Parallèle, méridien et coordonnées géographiques",
+            slug: "coordonnees-geographiques",
+            duration: "12 min",
+            level: "Débutant",
+          },
+          {
+            title:
+              "Les cartes de navigation : principes, propriétés et échelles",
+            slug: "principes-cartes",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title:
+              "Échelles, projections et trajectoires sur les cartes aéronautiques",
+            slug: "echelles-projections-trajectoires",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title: "S’orienter à l’aide d’une carte : déclinaison et compas",
+            slug: "orientation-compas",
+            duration: "14 min",
+            level: "Débutant",
+          },
+          {
+            title: "Mesure des distances en navigation aérienne",
+            slug: "mesure-distances",
+            duration: "12 min",
+            level: "Débutant",
+          },
+          {
+            title: "Naviguer à vue : bien choisir et lire sa carte VFR",
+            slug: "naviguer-carte-vfr",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title:
+              "Décoder sa carte VFR : symboles, zones RTBA et documents essentiels",
+            slug: "decoder-carte-vfr",
+            duration: "14 min",
+            level: "Débutant",
+          },
+          {
+            title: "Heure Zulu et carte VFR : lire le ciel à la bonne heure",
+            slug: "heure-zulu-carte-vfr",
+            duration: "12 min",
+            level: "Débutant",
+          },
+          {
+            title:
+              "Voler avec le soleil : durée du jour, saisons et planification VFR",
+            slug: "voler-avec-soleil",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title: "Variation de l’éclairement solaire selon les saisons",
+            slug: "eclairement-saisons",
+            duration: "12 min",
+            level: "Débutant",
+          },
+          {
+            title:
+              "Du soleil à la boussole : gérer le temps et la route en VFR",
+            slug: "soleil-boussole",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title:
+              "Naviguer entre ciel et vent : route, vitesse et durée du jour",
+            slug: "naviguer-ciel-vent",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title: "Vitesse propre, influence du vent et préparation du vol",
+            slug: "vitesse-vent-preparation",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title:
+              "Détermination de l’heure estimée d’arrivée (HEA) et influence du vent",
+            slug: "hea-influence-vent",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title: "Vent d’angle quelconque, cap et dérive",
+            slug: "vent-cap-derive",
+            duration: "13 min",
+            level: "Débutant",
+          },
+          {
+            title: "Cap, dérive et triangle des vitesses",
+            slug: "triangle-vitesses",
+            duration: "14 min",
+            level: "Débutant",
+          },
+          {
+            title: "Aide-mémoire et formules pratiques de navigation",
+            slug: "formules-navigation",
+            duration: "12 min",
+            level: "Débutant",
+          },
+        ],
       },
     ],
   },

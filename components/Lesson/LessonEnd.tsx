@@ -1,18 +1,24 @@
 "use client";
 
-import Link from "next/link";
 import { FaArrowRight, FaRedo } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { useNextLesson } from "@/utils/useNextLesson";
 import { LessonEndProps } from "@/types/types";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const LessonEnd = ({
   isQcmValidated,
   setIsReset,
-
+  currentLessonSlug, // 👈 important
   nextLessonSlug,
-}: LessonEndProps) => {
+}: LessonEndProps & { currentLessonSlug: string }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const nextLesson = useNextLesson();
+
+  console.log("nextLesson", nextLesson);
+  const router = useRouter();
 
   const buttonLabel =
     nextLesson?.type === "lesson"
@@ -29,6 +35,23 @@ const LessonEnd = ({
     setIsReset(true);
   };
 
+  const handleLessonValidation = async () => {
+    try {
+      setIsSubmitting(true);
+      await fetch("/api/lesson/mark-as-read", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lessonSlug: currentLessonSlug }),
+      });
+
+      router.push(destination);
+    } catch (error) {
+      console.error("Erreur lors de la validation de la leçon :", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="mt-12 bg-gray-50 border-t pt-8 pb-12 text-center rounded-md w-full">
       {isQcmValidated ? (
@@ -40,13 +63,18 @@ const LessonEnd = ({
             Tu as validé cette leçon. Tu peux passer à la suite.
           </p>
 
-          <Link
-            href={destination}
-            className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-md font-semibold transition"
+          <Button
+            onClick={handleLessonValidation}
+            disabled={isSubmitting}
+            className={`inline-flex items-center gap-2 px-5 py-2 rounded-md font-semibold transition ${
+              isSubmitting
+                ? "bg-gray-400 text-white cursor-not-allowed"
+                : "bg-blue-700 hover:bg-blue-800 text-white"
+            }`}
           >
-            {buttonLabel}
-            <FaArrowRight />
-          </Link>
+            {isSubmitting ? "Chargement..." : buttonLabel}
+            {!isSubmitting && <FaArrowRight />}
+          </Button>
         </>
       ) : (
         <>
@@ -67,13 +95,16 @@ const LessonEnd = ({
             </Button>
 
             <Button
-              asChild
-              className="gap-2 bg-gray-700 hover:bg-gray-800 text-white"
+              onClick={handleLessonValidation}
+              disabled={isSubmitting}
+              className={`gap-2 px-5 py-2 rounded-md font-semibold transition ${
+                isSubmitting
+                  ? "bg-gray-400 cursor-not-allowed text-white"
+                  : "bg-gray-700 hover:bg-gray-800 text-white"
+              }`}
             >
-              <Link href={destination}>
-                {buttonLabel}
-                <FaArrowRight />
-              </Link>
+              {isSubmitting ? "Chargement..." : buttonLabel}
+              {!isSubmitting && <FaArrowRight />}
             </Button>
           </div>
         </>

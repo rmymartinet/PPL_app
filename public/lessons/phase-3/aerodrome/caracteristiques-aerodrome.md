@@ -101,6 +101,13 @@ Un aérodrome peut être contrôlé ou non contrôlé. Sur les terrains non cont
 
 ---
 
+| **Service** | **Qui parle ?**     | **Type d’infos**      | **Autorité ?**               | **Mnémotechnique**                   |
+| ----------- | ------------------- | --------------------- | ---------------------------- | ------------------------------------ |
+| **ATIS**    | Message enregistré  | Météo, piste, QNH...  | **Aucune**                   | ATIS = automatique, tourne en boucle |
+| **AFIS**    | Agent AFIS (humain) | Infos trafic et météo | **Informe, ne contrôle pas** | AFIS = il t’informe, tu décides      |
+
+---
+
 ### b) Auto-information
 
 > En l'absence de TWR et d’AFIS, c’est au pilote d’assurer **l’annonce de ses intentions** sur une fréquence commune.
@@ -137,6 +144,8 @@ Fréquences utilisées :
 
 ---
 
+👉🏻 Maintenant que tu sais comment communiquer sur un aérodrome, découvrons comment les pistes sont identifiées, choisies en fonction du vent, et comment les mouvements au sol sont organisés grâce aux différentes aires et fréquences.
+
 ### Moyens mnémotechniques
 
 - **ATIS = Info en boucle (Alpha, Bravo...)**
@@ -146,5 +155,3 @@ Fréquences utilisées :
 - **7700** = urgence
 - **RMZ** = Radio MANDATORY Zone → radio obligatoire
 - **TWR → dirige | AFIS → informe | Auto-info → partage**
-
-Maintenant que tu sais comment communiquer sur un aérodrome, découvrons comment les pistes sont identifiées, choisies en fonction du vent, et comment les mouvements au sol sont organisés grâce aux différentes aires et fréquences.

@@ -127,6 +127,160 @@
   font-family: var(--font-caveat);
 }
 
+/* Sketch EFFECT*/
+
+.sketch-highlight {
+  position: relative;
+}
+
+.sketch-highlight:before {
+  content: "";
+  z-index: -1;
+  left: 0em;
+  top: 0em;
+  border-width: 2px;
+  border-style: solid;
+  border-color: darkblue;
+  position: absolute;
+  border-right-color: transparent;
+  width: 100%;
+  height: 1em;
+  transform: rotate(2deg);
+  opacity: 0.5;
+  border-radius: 0.25em;
+}
+
+.sketch-highlight:after {
+  content: "";
+  z-index: -1;
+  left: 0em;
+  top: 0em;
+  border-width: 2px;
+  border-style: solid;
+  border-color: darkblue;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  position: absolute;
+  width: 100%;
+  height: 1em;
+  transform: rotate(-1deg);
+  opacity: 0.5;
+  border-radius: 0.25em;
+}
+/* Circle Sketch*/
+.circle-sketch-highlight {
+  position: relative;
+  display: inline-block;
+  padding: 0.35em 0em; /* Permet un meilleur espace interne */
+}
+
+.circle-sketch-highlight::before,
+.circle-sketch-highlight::after {
+  content: "";
+  position: absolute;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.7;
+  z-index: 1;
+  width: 120%;
+  height: 2em;
+  left: -10%;
+  top: 0;
+  pointer-events: none;
+}
+
+.circle-sketch-highlight::before {
+  transform: rotate(-10deg);
+}
+
+.circle-sketch-highlight::after {
+  transform: rotate(-2deg);
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+/* Couleurs spécifiques par phase */
+.circle-phase-1 {
+  color: #cdebf7;
+}
+.circle-phase-2 {
+  color: #c3ebdd;
+}
+.circle-phase-3 {
+  color: #ffe2cc;
+}
+.circle-phase-4 {
+  color: #dee2ef;
+}
+.circle-phase-5 {
+  color: #fff2b3;
+}
+.circle-phase-6 {
+  color: #ffc9c9;
+}
+.circle-phase-7 {
+  color: #e0f5ec;
+}
+.circle-phase-8 {
+  color: #e9e1fa;
+}
+.circle-phase-9 {
+  color: #d3e9fc;
+}
+.circle-phase-10 {
+  color: #fae3e3;
+}
+/* MARKER EFFECT*/
+
+.realistic-marker-highlight {
+  position: relative;
+}
+
+.realistic-marker-highlight:before {
+  content: "";
+  background-color: #c0ffc8;
+  width: 100%;
+  height: 1em;
+  position: absolute;
+  z-index: -1;
+  filter: url(#marker-shape);
+  left: -0.25em;
+  top: 0.1em;
+  padding: 0 0.25em;
+}
+.card-section {
+  position: relative;
+  background: #f5f5f53b;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.card-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--phase-highlight, #ffe97f) 0%,
+    #f5f5f53b 35%
+  );
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.card-section:hover::after {
+  opacity: 1;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 /* Ajoute de l’espace au scroll pour ne pas cacher les titres */
 h2[id],
 h3[id] {

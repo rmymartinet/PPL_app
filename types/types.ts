@@ -12,10 +12,10 @@ export interface CourseCardProps {
   category: string;
   status?: "in-progress" | "completed";
   lessonsRead?: number;
-  totalLessons?: number;
+  lessonsTotal?: number;
   qcmDone?: number;
   qcmTotal?: number;
-  avgScore?: number;
+  qcmAverageScore?: number;
   lessonsToReview?: number;
   subCards: SubCard[];
 }

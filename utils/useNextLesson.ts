@@ -5,13 +5,9 @@ export function useNextLesson() {
   const params = useParams();
   const { phase, chapter, lesson } = params;
 
-  const normalizedPhase = phase.toLowerCase();
-  const transformedPhase =
-    normalizedPhase.charAt(0).toUpperCase() + normalizedPhase.slice(1);
+  console.log(phase, chapter, lesson);
 
-  const phaseIndex = phasesData.findIndex(
-    (p) => p.category === transformedPhase
-  );
+  const phaseIndex = phasesData.findIndex((p) => p.category === phase);
   if (phaseIndex === -1) return null;
 
   const currentPhase = phasesData[phaseIndex];
@@ -34,7 +30,7 @@ export function useNextLesson() {
       chapter,
       slug: next.slug,
       title: next.title,
-      type: "lesson", // 🔁
+      type: "lesson",
     };
   }
 

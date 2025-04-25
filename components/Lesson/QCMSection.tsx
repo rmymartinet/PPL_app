@@ -34,9 +34,29 @@ const QCMSection = ({ qcmList, isReset, onSuccess }: QCMProps) => {
     return selected !== null && qcmList[qcmIndex].answers[selected].correct;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setValidated(true);
+
     const allCorrect = qcmList.every((_, i) => isAnswerCorrect(i));
+    const phaseSlug = window.location.pathname.split("/").slice(-4)[0];
+    const chapterSlug = window.location.pathname.split("/").slice(-2)[0];
+    const lessonSlug = window.location.pathname.split("/").pop();
+
+    try {
+      await fetch("/api/qcm/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phaseSlug,
+          chapterSlug,
+          lessonSlug,
+          success: allCorrect,
+        }),
+      });
+    } catch (err) {
+      console.error("Erreur en enregistrant la tentative de QCM :", err);
+    }
+
     if (allCorrect) onSuccess();
   };
 
@@ -51,7 +71,6 @@ const QCMSection = ({ qcmList, isReset, onSuccess }: QCMProps) => {
       className="bg-white border border-gray-200 rounded-xl p-6 mt-8 shadow-sm"
     >
       <h3 className="text-xl font-bold mb-6">🎯 Teste tes connaissances</h3>
-
       {qcmList.map((qcm, qcmIndex) => (
         <div key={qcmIndex} className="mb-6">
           <p className="mb-3 font-medium text-gray-800">

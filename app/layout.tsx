@@ -26,6 +26,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${caveat.variable} antialiased`}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          style={{ display: "none" }}
+        >
+          <defs>
+            <filter id="marker-shape">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0 0.15"
+                numOctaves="1"
+                result="warp"
+              />
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="warp"
+                scale="30"
+                xChannelSelector="R"
+                yChannelSelector="G"
+              />
+            </filter>
+          </defs>
+        </svg>
         <Navbar />
         {children}
       </body>
